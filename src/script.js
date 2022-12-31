@@ -7,6 +7,7 @@ import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js'
 import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js'
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js'
 import {FBXLoader} from 'three/examples/jsm/loaders/FBXLoader'
+
 /**
  * Debug
  */
@@ -43,12 +44,14 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 
+
+
 const fontLoader = new FontLoader()
 fontLoader.load(
     '/fonts/JetBrains Mono Medium_Regular.json',
     (font) => {
         const textGeometry1 = new TextGeometry(
-            'Corbel Assistant',
+            'Corbel Race',
             {
                 font: font,
                 size: 0.2,
@@ -97,7 +100,7 @@ fontLoader.load(
         const text3 = new THREE.Mesh(textGeometry3, textMaterial)
 
         //text1.position.x = -2.67
-        text1.position.set(-3,1.2,0)
+        text1.position.set(0.35,1.2,0)
         text1.rotation.x = -0.1
         // text1.rotation.y = -0.3
 
@@ -111,6 +114,8 @@ fontLoader.load(
         scene.add(text1)
     }
 )
+
+
 //
 
 const parameters = {
@@ -224,9 +229,9 @@ gltfLoader.load('/modules/robot_playground/scene.gltf',
      mixer = new THREE.AnimationMixer(gltf.scene);
     const action = mixer.clipAction(gltf.animations[0]);
     action.play();
-   gltf.scene.position.set(1.7,-0.8,0)
+   gltf.scene.position.set(-2,-1.2,0)
    gltf.scene.scale.set(0.8, 0.8, 0.8)
-     scene.add(gltf.scene)
+    // scene.add(gltf.scene)
      
 },)
 
@@ -240,7 +245,7 @@ gltfLoader.load('/modules/robot_playground/scene.gltf',
  /**
  * Lights
  */
-const directionalLight = new THREE.DirectionalLight('#ffffff', 1)
+const directionalLight = new THREE.HemisphereLight('#ffff', '#222327' ,1.2)
 directionalLight.position.set(1, 1, 0)
 scene.add(directionalLight)
 
@@ -359,6 +364,17 @@ window.addEventListener('mousemove', (event) =>
     cursor.y = event.clientY / sizes.height - .5
 })
 
+const geometry = new THREE.IcosahedronGeometry(0.3, 1);
+const bmaterial = new THREE.MeshStandardMaterial({ flatShading: true, color: "mediumpurple" });
+const ball = new THREE.Mesh(geometry, bmaterial);
+ball.castShadow = true;
+
+ball.position.set(-2,-0.5,0)
+ball.scale.set(2,2,2)
+
+// Add the ball to the scene
+scene.add(ball);
+
 /**
  * Animate
  */
@@ -372,6 +388,11 @@ const tick = () =>
     const elapsedTime = clock.getElapsedTime()
     const deltaTime = elapsedTime - previousTime
     previousTime = elapsedTime
+
+
+    ball.rotation.y += deltaTime
+    ball.rotation.x += deltaTime    
+
    if (mixer !== null)
    {
     mixer.update(deltaTime)
