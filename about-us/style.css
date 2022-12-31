@@ -1,0 +1,83 @@
+body{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.wrapper{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.background-container{
+    width: 100%;
+    min-height: 100vh;
+    display: flex; 
+    background-color: #222327;
+}
+.about-container{
+    width: 85%;
+    min-height: 80vh;
+    position: absolute;
+    background-color: #f1ecff;
+    box-shadow: 10px 10px 26px #9586c7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 40px;
+    border-radius: 15px;
+}
+.image-container{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.image-container img {
+    width: 500px;
+    height: 500px
+}
+.text-container{
+    flex: 1;
+    display: flex;
+    margin-top: -20px;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    font-size: 22px;
+    color: #222327;
+    font-family: 'League Spartan', sans-serif;
+}
+.text-container p{
+    margin-top: -20px;
+    margin-bottom: 20px;
+}
+.text-container h1{
+    font-size: 70px;
+    font-weight: 100;
+    font-family: 'Quicksand', sans-serif;  
+}
+.icons i{
+    font-size: 25px;
+    display: inline-block;
+    padding: 8px;
+    margin: 0px 5px;
+    color: #d8cef4;
+    background-color: rgb(35, 31, 46);
+    border-radius: 50%;
+    display: inline-block;
+    border: 1px solid #f1ecff;
+}
+.icons i:hover {  
+    color: rgb(35, 31, 46);
+    background-color: #d8cef4;
+    border: 1px solid rgb(35, 31, 46);
+    transition: 0.4s;
+}
+ul li{
+    display: inline-block;
+}
+ul{
+    margin-left: -40px;
+}
+
